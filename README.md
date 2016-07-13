@@ -16,7 +16,7 @@
  Type 'a', then '1' to toggle bootable flag on Boot partition. 
 
 ### 1.2 Extended partition
-  Type 'n', then 'e' for extended, '2' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then ENTER for the last sector (Extended partition will take all the available space left).
+ Type 'n', then 'e' for extended, '2' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then ENTER for the last sector (Extended partition will take all the available space left).
 
 ### 1.3 Root Partition
  Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.
@@ -45,7 +45,7 @@
  	mkswap /dev/vda6 -L sw4p
  	swapon /dev/vda6
  
-###### 2) Now we can start Installation
+## 2) Now we can start Installation
 
 ### 2.1 Install the base and development packages
  	pacstrap /mnt base base-devel
@@ -76,14 +76,14 @@
  
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:
  Add virtual machine support:
- MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
+	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
  Create a new initial RAM disk with:
  	mkinitcpio -p linux
  If you get these warnings :
- == WARNING: Possibly missing firmware for module: wd719x
- == WARNING: Possibly missing firmware for module: aic94xx
+ 	== WARNING: Possibly missing firmware for module: wd719x
+ 	== WARNING: Possibly missing firmware for module: aic94xx
  
-[You can safely ignore them](https://wiki.archlinux.org/index.php/mkinitcpio### Possibly_missing_firmware_for_module_XXXX)
+[You can safely ignore them !](https://wiki.archlinux.org/index.php/mkinitcpio### Possibly_missing_firmware_for_module_XXXX)
  
 ### 2.9 Set the root password:
  	passwd

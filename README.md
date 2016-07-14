@@ -3,12 +3,12 @@
 
 ## 1) Partition Table and File System Creation
 
-Start fdisk to partition the virtualk drive:  
+#####Start fdisk to partition the virtualk drive:
 	fdisk /dev/vda
 	
- At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
- *Type 'o'*. This will clear out any partitions on the drive.  
- *Type 'p'* to list partitions. There should be no partitions left.
+ #####At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
+ **Type 'o'*. This will clear out any partitions on the drive.  
+ **Type 'p'* to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
  *Type 'n'*, then *'p'* for primary, *'1'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *type '+100M'* for the last sector.  

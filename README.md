@@ -3,12 +3,12 @@
 
 ## 1) Partition Table and File System Creation
 
-#####Start fdisk to partition the virtualk drive:
+##### Start fdisk to partition the virtualk drive:
 	fdisk /dev/vda
 	
- #####At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
- **Type 'o'*. This will clear out any partitions on the drive.  
- **Type 'p'* to list partitions. There should be no partitions left.
+ ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
+ *Type 'o'*. This will clear out any partitions on the drive.  
+ *Type 'p'* to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
  *Type 'n'*, then *'p'* for primary, *'1'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *type '+100M'* for the last sector.  
@@ -51,7 +51,7 @@
  	pacstrap /mnt base base-devel
  
 ### 2.2 Configure the system  
-####Generate an fstab file (use -U or -L to define by UUID or labels):  
+##### Generate an fstab file (use -U or -L to define by UUID or labels):  
 	genfstab -pL /mnt  /mnt/etc/fstab
 
 ### 2.3 Change root into the new system:
@@ -65,7 +65,7 @@
 
 ### 2.6 Uncomment the needed locales in /etc/locale.gen, then generate them with:
  	locale-gen
-Add at least LANG=your_locale in /etc/locale.conf  
+##### Add at least LANG=your_locale in /etc/locale.conf  
 	nano /etc/locale.conf
 	LANG=en_GB.UTF-8
 	LC_COLLATE=C
@@ -75,11 +75,11 @@ Add at least LANG=your_locale in /etc/locale.conf
  	echo /etc/vconsole.conf  KEYMAP=be
  
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:  
-Add virtual machine support:  
+##### Add virtual machine support:  
 	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
-Create a new initial RAM disk with:  
+##### Create a new initial RAM disk with:  
 	mkinitcpio -p linux
-If you get these warnings:  
+##### If you get these warnings:  
 	*== WARNING: Possibly missing firmware for module: wd719x*
 	*== WARNING: Possibly missing firmware for module: aic94xx*
  
@@ -102,12 +102,12 @@ If you get these warnings:
 	pacman -S xfce4 xfce4-goodies xorg alsa-utils slim wget baobab mlocate binutils synapse firefox p7zip xarchiver
 	optionnally : sh gcc make autoconf m4 qt5 pygtk mono networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
 	
-Now we can assume our Installation and basic setup is finished:
- 	exit && umount -R /mnt
- 	reboot
+##### Now we can assume our Installation and basic setup is finished:
+	exit && umount -R /mnt
+	reboot
  
 ## 6) Configure Xfce  
-Create .xinitrc:
+##### Create .xinitrc:
 	nano ~/.xinitrc and "starxfce4" then save
 	Edit slim.conf default username and autologin yes for autologin.
 	starxfce4'

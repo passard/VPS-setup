@@ -4,7 +4,7 @@
 ## 1) Partition Table and File System Creation
 
  Start fdisk to partition the virtualk drive:  
-	fdisk /dev/vda
+ 	fdisk /dev/vda
 	
  At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
  Type 'o'. This will clear out any partitions on the drive.  
@@ -50,12 +50,12 @@
 ### 2.1 Install the base and development packages
  	pacstrap /mnt base base-devel
  
-### 2.2 Configure the system
- Generate an fstab file (use -U or -L to define by UUID or labels):
- 	genfstab -pL /mnt  /mnt/etc/fstab
+### 2.2 Configure the system  
+Generate an fstab file (use -U or -L to define by UUID or labels):  
+	genfstab -pL /mnt  /mnt/etc/fstab
 
 ### 2.3 Change root into the new system:
- 	arch-chroot /mnt
+	arch-chroot /mnt
 
 ### 2.4 Create the /etc/hostname file.
  	echo myhostname  /etc/hostname
@@ -106,13 +106,13 @@ Now we can assume our Installation and basic setup is finished:
  	exit && umount -R /mnt
  	reboot
  
-## 6) Configure Xfce
-Create .xinitrc:  
+## 6) Configure Xfce  
+	Create .xinitrc:  
 	nano ~/.xinitrc and "starxfce4" then save
-Edit slim.conf default username and autologin yes for autologin.
+	Edit slim.conf default username and autologin yes for autologin.
 	starxfce4'
 
-## 7) Configure Network
+## 7) Configure Network  
 	cd /etc/netctl
 	install -m640 examples/ethernet-dhcp internet
 	sudo nano internet

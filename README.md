@@ -1,5 +1,5 @@
 # VPS-setup
-### Creating a Arch linux host from scratch (with transip.eu BladeVPS)
+### Creating an Arch linux host from scratch (with transip.eu BladeVPS)
 
 ## 1) Partition Table and File System Creation
 

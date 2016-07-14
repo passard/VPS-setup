@@ -3,34 +3,34 @@
 
 ## 1) Partition Table and File System Creation
 
- Start fdisk to partition the virtualk drive:  
- 	fdisk /dev/vda
+Start fdisk to partition the virtualk drive:  
+	fdisk /dev/vda
 	
  At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
- Type 'o'. This will clear out any partitions on the drive.  
- Type 'p' to list partitions. There should be no partitions left.
+ *Type 'o'*. This will clear out any partitions on the drive.  
+ *Type 'p'* to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
- Type 'n', then 'p' for primary, '1' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then type '+100M' for the last sector.  
- Type 't', then 'c' to set the first partition to type W95 FAT32 (LBA).  
- Type 'a', then '1' to toggle bootable flag on Boot partition. 
+ *Type 'n'*, then *'p'* for primary, *'1'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *type '+100M'* for the last sector.  
+ *Type 't'*, then *'c'* to set the first partition to type W95 FAT32 (LBA).  
+ *Type 'a'*, then *'1'* to toggle bootable flag on Boot partition. 
 
 ### 1.2 Extended partition
- Type 'n', then 'e' for extended, '2' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then ENTER for the last sector (Extended partition will take all the available space left).
+ *Type 'n'*, then *'e'* for extended, *'2'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *ENTER* for the last sector (Extended partition will take all the available space left).
 
 ### 1.3 Root Partition
- Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ *Type 'n'* : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
  Adding logical partition 5  
- Press ENTER to accept default first sector, then '+49G' (eg) for root partition size.  
- Type 't', partition number should be 5, press ENTER, then '8e' to set the first logical partition to type Linux LVM.
+ Press *ENTER* to accept default first sector, then *'+49G'* (eg) for root partition size.  
+ *Type 't'*, partition number should be 5, press *ENTER*, then *'8e'* to set the first logical partition to type Linux LVM.
  
 ### 1.4 Swap partition
- Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ *Type 'n'* : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
  Adding logical partition 6  
- Press ENTER to accept default first sector, then ENTER again for default last sector.  
- Type 't', partition number should be 6, press ENTER, then '82' to set the second logical partition to type Linux Swap.  
+ Press *ENTER* to accept default first sector, then ENTER again for default last sector.  
+ *Type 't'*, partition number should be 6, press *ENTER*, then *'82'* to set the second logical partition to type Linux Swap.  
   
- Type 'p' to check how partition table is looking, if everything looks good, write the partition table and exit by typing 'w'.
+ *Type 'p'* to check how partition table is looking, if everything looks good, write the partition table and exit by typing *'w'*.
 
 ### 1.5 Create and mount the FAT file system (-n is for label option):
 	mkfs.vfat /dev/vda1 -n b00t
@@ -51,7 +51,7 @@
  	pacstrap /mnt base base-devel
  
 ### 2.2 Configure the system  
-Generate an fstab file (use -U or -L to define by UUID or labels):  
+####Generate an fstab file (use -U or -L to define by UUID or labels):  
 	genfstab -pL /mnt  /mnt/etc/fstab
 
 ### 2.3 Change root into the new system:
@@ -65,23 +65,23 @@ Generate an fstab file (use -U or -L to define by UUID or labels):
 
 ### 2.6 Uncomment the needed locales in /etc/locale.gen, then generate them with:
  	locale-gen
- Add at least LANG=your_locale in /etc/locale.conf  
- 	nano /etc/locale.conf
- 	LANG=en_GB.UTF-8
- 	LC_COLLATE=C
- 	LC_TIME=en_GB.UTF-8
+Add at least LANG=your_locale in /etc/locale.conf  
+	nano /etc/locale.conf
+	LANG=en_GB.UTF-8
+	LC_COLLATE=C
+	LC_TIME=en_GB.UTF-8
 	
 ### 2.7 Add console keymap and font preferences in /etc/vconsole.conf:
  	echo /etc/vconsole.conf  KEYMAP=be
  
-### 2.8 Configure kernel options with /etc/mkinitcpio.conf:
+### 2.8 Configure kernel options with /etc/mkinitcpio.conf:  
 Add virtual machine support:  
-	> MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
+	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
 Create a new initial RAM disk with:  
 	mkinitcpio -p linux
 If you get these warnings:  
-	== WARNING: Possibly missing firmware for module: wd719x
-	== WARNING: Possibly missing firmware for module: aic94xx
+	*== WARNING: Possibly missing firmware for module: wd719x*
+	*== WARNING: Possibly missing firmware for module: aic94xx*
  
 [You can safely ignore them !](https://wiki.archlinux.org/index.php/mkinitcpio### Possibly_missing_firmware_for_module_XXXX)
  
@@ -107,7 +107,7 @@ Now we can assume our Installation and basic setup is finished:
  	reboot
  
 ## 6) Configure Xfce  
-	Create .xinitrc:  
+Create .xinitrc:
 	nano ~/.xinitrc and "starxfce4" then save
 	Edit slim.conf default username and autologin yes for autologin.
 	starxfce4'

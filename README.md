@@ -6,30 +6,30 @@
  Start fdisk to partition the virtualk drive:
 	fdisk /dev/vda
 	
- At the fdisk prompt, delete old partitions (if there is any) and create a new one:
- Type 'o'. This will clear out any partitions on the drive.
+ At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
+ Type 'o'. This will clear out any partitions on the drive.  
  Type 'p' to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
- Type 'n', then 'p' for primary, '1' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then type '+100M' for the last sector.
- Type 't', then 'c' to set the first partition to type W95 FAT32 (LBA).
+ Type 'n', then 'p' for primary, '1' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then type '+100M' for the last sector.  
+ Type 't', then 'c' to set the first partition to type W95 FAT32 (LBA).  
  Type 'a', then '1' to toggle bootable flag on Boot partition. 
 
 ### 1.2 Extended partition
  Type 'n', then 'e' for extended, '2' (Default) for the first partition on the drive, press ENTER to accept the default first sector, then ENTER for the last sector (Extended partition will take all the available space left).
 
 ### 1.3 Root Partition
- Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.
- Adding logical partition 5
- Press ENTER to accept default first sector, then '+49G' (eg) for root partition size.
+ Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ Adding logical partition 5  
+ Press ENTER to accept default first sector, then '+49G' (eg) for root partition size.  
  Type 't', partition number should be 5, press ENTER, then '8e' to set the first logical partition to type Linux LVM.
  
 ### 1.4 Swap partition
- Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.
- Adding logical partition 6
- Press ENTER to accept default first sector, then ENTER again for default last sector.
- Type 't', partition number should be 6, press ENTER, then '82' to set the second logical partition to type Linux Swap.
-
+ Type 'n' : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ Adding logical partition 6  
+ Press ENTER to accept default first sector, then ENTER again for default last sector.  
+ Type 't', partition number should be 6, press ENTER, then '82' to set the second logical partition to type Linux Swap.  
+  
  Type 'p' to check how partition table is looking, if everything looks good, write the partition table and exit by typing 'w'.
 
 ### 1.5 Create and mount the FAT file system (-n is for label option):
@@ -88,17 +88,17 @@
 ### 2.9 Set the root password:
  	passwd
  
-### 3) Install a boot loader (GRUB):
+## 3) Install a boot loader (GRUB):
  	pacman -S grub
  	grub-install --target=i386-pc /dev/vda
  	grub-mkconfig -o /boot/grub/grub.cfg
  
-### 4) Create a user with administrator rights:
+## 4) Create a user with administrator rights:
  	useradd -m -g users -G storage,power,wheel -s /bin/bash "username"
  	nano /etc/sudoers and uncomment the %wheel line
  	passwd "username" to define a password and su "username" to login as newly created user
 
-### 5) Install fancy packages:
+## 5) Install fancy packages:
 	pacman -S xfce4 xfce4-goodies xorg alsa-utils slim wget baobab mlocate binutils synapse firefox p7zip xarchiver
 	optionnally : sh gcc make autoconf m4 qt5 pygtk mono networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
 	
@@ -106,13 +106,13 @@ Now we can assume our Installation and basic setup is finished:
  	exit && umount -R /mnt
  	reboot
  
-### 6) Configure Xfce
+## 6) Configure Xfce
 Create .xinitrc:
 	nano ~/.xinitrc and "starxfce4" then save
 Edit slim.conf default username and autologin yes for autologin.
 	starxfce4'
 
-### 7) Configure Network
+## 7) Configure Network
 	cd /etc/netctl
  	install -m640 examples/ethernet-dhcp internet
  	sudo nano internet

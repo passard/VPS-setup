@@ -75,11 +75,11 @@
  	echo /etc/vconsole.conf  KEYMAP=be
  
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:
- Add virtual machine support:
- 	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
- Create a new initial RAM disk with:
+Add virtual machine support:  
+	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
+Create a new initial RAM disk with:
 	mkinitcpio -p linux
- If you get these warnings :
+If you get these warnings:
 	== WARNING: Possibly missing firmware for module: wd719x
 	== WARNING: Possibly missing firmware for module: aic94xx
  
@@ -114,9 +114,9 @@ Edit slim.conf default username and autologin yes for autologin.
 
 ## 7) Configure Network
 	cd /etc/netctl
- 	install -m640 examples/ethernet-dhcp internet
- 	sudo nano internet
- 	Inteface=ens3
+	install -m640 examples/ethernet-dhcp internet
+	sudo nano internet
+	Inteface=ens3
 
  Getting started with AUR:
  pacman -S --needed base-devel git 

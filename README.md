@@ -66,20 +66,20 @@
 ### 2.6 Uncomment the needed locales in /etc/locale.gen, then generate them with:
  	locale-gen
  Add at least LANG=your_locale in /etc/locale.conf  
-	nano /etc/locale.conf
-	LANG=en_GB.UTF-8
-	LC_COLLATE=C
-	LC_TIME=en_GB.UTF-8
+ 	nano /etc/locale.conf
+ 	LANG=en_GB.UTF-8
+ 	LC_COLLATE=C
+ 	LC_TIME=en_GB.UTF-8
 	
 ### 2.7 Add console keymap and font preferences in /etc/vconsole.conf:
  	echo /etc/vconsole.conf  KEYMAP=be
  
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:
 Add virtual machine support:  
-	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
-Create a new initial RAM disk with:
+	> MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
+Create a new initial RAM disk with:  
 	mkinitcpio -p linux
-If you get these warnings:
+If you get these warnings:  
 	== WARNING: Possibly missing firmware for module: wd719x
 	== WARNING: Possibly missing firmware for module: aic94xx
  
@@ -107,7 +107,7 @@ Now we can assume our Installation and basic setup is finished:
  	reboot
  
 ## 6) Configure Xfce
-Create .xinitrc:
+Create .xinitrc:  
 	nano ~/.xinitrc and "starxfce4" then save
 Edit slim.conf default username and autologin yes for autologin.
 	starxfce4'

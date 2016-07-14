@@ -6,7 +6,7 @@
 ##### Start fdisk to partition the virtualk drive:
 	fdisk /dev/vda
 	
- ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
+##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
  *Type 'o'*. This will clear out any partitions on the drive.  
  *Type 'p'* to list partitions. There should be no partitions left.
 
@@ -80,8 +80,8 @@
 ##### Create a new initial RAM disk with:  
 	mkinitcpio -p linux
 ##### If you get these warnings:  
-	*== WARNING: Possibly missing firmware for module: wd719x*
-	*== WARNING: Possibly missing firmware for module: aic94xx*
+	== WARNING: Possibly missing firmware for module: wd719x
+	== WARNING: Possibly missing firmware for module: aic94xx
  
 [You can safely ignore them !](https://wiki.archlinux.org/index.php/mkinitcpio### Possibly_missing_firmware_for_module_XXXX)
  

@@ -3,7 +3,7 @@
 
 ## 1) Partition Table and File System Creation
 
-##### Start fdisk to partition the virtualk drive:
+##### Start fdisk to partition the virtual drive:
 	fdisk /dev/vda
 	
 ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  

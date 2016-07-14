@@ -3,7 +3,7 @@
 
 ## 1) Partition Table and File System Creation
 
- Start fdisk to partition the virtualk drive:
+ Start fdisk to partition the virtualk drive:  
 	fdisk /dev/vda
 	
  At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
@@ -65,8 +65,8 @@
 
 ### 2.6 Uncomment the needed locales in /etc/locale.gen, then generate them with:
  	locale-gen
- Add at least LANG=your_locale in /etc/locale.conf
- 	nano /etc/locale.conf
+ Add at least LANG=your_locale in /etc/locale.conf  
+	nano /etc/locale.conf
 	LANG=en_GB.UTF-8
 	LC_COLLATE=C
 	LC_TIME=en_GB.UTF-8
@@ -76,12 +76,12 @@
  
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:
  Add virtual machine support:
-	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
+ 	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
  Create a new initial RAM disk with:
- 	mkinitcpio -p linux
+	mkinitcpio -p linux
  If you get these warnings :
- 	== WARNING: Possibly missing firmware for module: wd719x
- 	== WARNING: Possibly missing firmware for module: aic94xx
+	== WARNING: Possibly missing firmware for module: wd719x
+	== WARNING: Possibly missing firmware for module: aic94xx
  
 [You can safely ignore them !](https://wiki.archlinux.org/index.php/mkinitcpio### Possibly_missing_firmware_for_module_XXXX)
  

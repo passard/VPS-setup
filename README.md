@@ -64,7 +64,7 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 ## 2) Now we can start Installation
 
 ### 2.1 Install the base and development packages
- 	pacstrap /mnt base base-devel
+ 	pacstrap /mnt linux linux-firmware base base-devel
  
 ### 2.2 Configure the system  
 ##### Generate an fstab file (use -U or -L to define by UUID or labels):  
@@ -88,7 +88,7 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 	LC_TIME=en_GB.UTF-8
 	
 ### 2.7 Add console keymap and font preferences in /etc/vconsole.conf:
-	localectl set-keymap --no-convert de_CH 
+	cd 
 	
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:  
 ##### Add virtual machine support:  
@@ -114,9 +114,8 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
  	nano /etc/sudoers and uncomment the %wheel line
  	passwd "username" to define a password and su "username" to login as newly created user
 
-## 5) Install fancy packages:
-	pacman -S xfce4 xfce4-goodies xorg alsa-utils slim wget baobab mlocate binutils synapse firefox p7zip xarchiver
-	optionnally : sh gcc make autoconf m4 qt5 pygtk mono networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
+## 5) Install useful and fancy packages:
+	pacman -S netctl ifplugd dhcpcd xfce4 xfce4-goodies xorg alsa-utils slim wget baobab mlocate binutils synapse firefox p7zip xarchiver
 	
 ##### Now we can assume our Installation and basic setup is finished:
 	exit && umount -R /mnt
@@ -133,3 +132,6 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 	install -m640 examples/ethernet-dhcp internet
 	sudo nano internet
 	Inteface=ens3
+
+##### Then as a regular user
+	sudo netctl enable internet && sudo netctl start internet

@@ -1,5 +1,9 @@
 # VPS-setup
 ### Creating an Arch linux host from scratch (with transip.eu BladeVPS)
+All you get when installing Arh Linux onto a VPS is a root@archiso prompt.
+You will find in this README a memo I use for basic Arch Linux installon these VPS.
+
+![#f03c15](root@archiso)
 
 ## 1) Partition Table and File System Creation
 

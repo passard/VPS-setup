@@ -1,9 +1,12 @@
 # VPS-setup
 ### Creating an Arch linux host from scratch (with transip.eu BladeVPS)
-All you get when installing Arh Linux onto a VPS is a root@archiso prompt.
 You will find in this README a memo I use for basic Arch Linux installon these VPS.
 
-![#f03c15](root@archiso)
+All you get when installing Arh Linux onto a VPS is a basic promp:
+*root@archiso ~ #
+
+##### Lets change the keymap to match our keyboard's:
+	loadkeys de_CH
 
 ## 1) Partition Table and File System Creation
 
@@ -48,7 +51,16 @@ You will find in this README a memo I use for basic Arch Linux installon these V
 ### 1.7 Create and mount Swap file system (-L is for label option):
  	mkswap /dev/vda6 -L sw4p
  	swapon /dev/vda6
- 
+
+#### NB: recent archiso had DNS resolution deavtivated by default.
+#### It is mandatory to install packets from remote arch linux mirrors
+
+#### Here is how to check if it is activate:
+	systemctl status systemd-resolved.service
+
+#### If inactive, you can start and enable it as follow:
+	systemctl enable systemd-resolved && systemctl start systemd-resolved
+
 ## 2) Now we can start Installation
 
 ### 2.1 Install the base and development packages
@@ -62,10 +74,10 @@ You will find in this README a memo I use for basic Arch Linux installon these V
 	arch-chroot /mnt
 
 ### 2.4 Create the /etc/hostname file.
- 	echo myhostname  /etc/hostname
+ 	echo myhostname >> /etc/hostname
  
 ### 2.5 Set the time zone:
- 	ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+ 	ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 
 ### 2.6 Uncomment the needed locales in /etc/locale.gen, then generate them with:
  	locale-gen
@@ -76,8 +88,8 @@ You will find in this README a memo I use for basic Arch Linux installon these V
 	LC_TIME=en_GB.UTF-8
 	
 ### 2.7 Add console keymap and font preferences in /etc/vconsole.conf:
- 	echo /etc/vconsole.conf  KEYMAP=be
- 
+	localectl set-keymap --no-convert de_CH 
+	
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:  
 ##### Add virtual machine support:  
 	MODULES="virtio virtio_blk virtio_pci virtio_net virtio_ring"
@@ -121,6 +133,3 @@ You will find in this README a memo I use for basic Arch Linux installon these V
 	install -m640 examples/ethernet-dhcp internet
 	sudo nano internet
 	Inteface=ens3
-
- Getting started with AUR:
- pacman -S --needed base-devel git 

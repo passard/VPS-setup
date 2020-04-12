@@ -1,6 +1,6 @@
 # VPS-setup
 ### Creating an Arch linux host from scratch (with transip.eu BladeVPS)
-You will find in this README a memo I use for basic Arch Linux installon these VPS.
+You will find in this README a memo I use for basic Arch Linux installation on these VPS.
 
 All you get when installing Arh Linux onto a VPS is a basic promp:
 *root@archiso ~ #
@@ -114,24 +114,29 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
  	nano /etc/sudoers and uncomment the %wheel line
  	passwd "username" to define a password and su "username" to login as newly created user
 
-## 5) Install useful and fancy packages:
-	pacman -S netctl ifplugd dhcpcd xfce4 xfce4-goodies xorg alsa-utils slim wget baobab mlocate binutils synapse firefox p7zip xarchiver
-	
-##### Now we can assume our Installation and basic setup is finished:
-	exit && umount -R /mnt
-	reboot
- 
-## 6) Configure Xfce  
-##### Create .xinitrc:
-	nano ~/.xinitrc and "starxfce4" then save
-	Edit slim.conf default username and autologin yes for autologin.
-	starxfce4'
+## 5) Install basic build utilities
+	sudo pacman -S multilib-devel fakeroot git jshon wget make pkg-config autoconf automake patch
 
-## 7) Configure Network  
+## 6) Install a network manager, we will pick netctl, with some useful options:
+	pacman -S netctl ifplugd dhcpcd openssh
+
+## 7) Configure Network
 	cd /etc/netctl
 	install -m640 examples/ethernet-dhcp internet
 	sudo nano internet
 	Inteface=ens3
-
-##### Then as a regular user
-	sudo netctl enable internet && sudo netctl start internet
+	netctl enable internet && sudo netctl start internet
+	
+## 8) Should you want to install a desktop environment and some fancy packages:
+	pacman -S xfce4 xfce4-goodies slim xorg wget baobab mlocate binutils synapse firefox p7zip xarchiver
+	
+## 9) Configure Xfce  
+##### Create .xinitrc:
+	nano ~/.xinitrc and "starxfce4" then save
+	Edit slim.conf default username and autologin yes for autologin.
+	starxfce4'
+	
+## 9) Commplete installation and restart VPS system
+##### Now we can assume our Installation and basic setup is finished:
+	exit && umount -R /mnt
+	reboot

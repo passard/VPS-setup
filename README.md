@@ -2,11 +2,12 @@
 ### Creating an Arch linux host from scratch (with transip.eu BladeVPS)
 You will find in this README a memo I use for basic Arch Linux installation on these VPS.
 
-All you get when installing Arh Linux onto a VPS is a basic promp:
-*root@archiso ~ #
+All you get when installing Arh Linux onto a VPS is a basic prompt:
+ *root@archiso ~ #*
+so let's start from there.
 
-##### Lets change the keymap to match our keyboard's:
-	loadkeys de_CH
+##### Change the keymap to match our keyboard's:
+	loadkeys fr_CH
 
 ## 1) Partition Table and File System Creation
 
@@ -40,7 +41,7 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
  *Type 'p'* to check how partition table is looking, if everything looks good, write the partition table and exit by typing *'w'*.
 
 ### 1.5 Create and mount the FAT file system (-n is for label option):
-	mkfs.vfat /dev/vda1 -n b00t
+	mkfs.vfat /dev/vda1 -n B00T
  	mkdir /mnt/boot
  	mount /dev/vda1 /mnt/boot
 
@@ -52,10 +53,10 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
  	mkswap /dev/vda6 -L sw4p
  	swapon /dev/vda6
 
-#### NB: recent archiso had DNS resolution deavtivated by default.
+#### NB: recent archiso had DNS resolution deactivated by default.
 #### It is mandatory to install packets from remote arch linux mirrors
 
-#### Here is how to check if it is activate:
+#### Here is how to check if it is activated:
 	systemctl status systemd-resolved.service
 
 #### If inactive, you can start and enable it as follow:
@@ -63,11 +64,11 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 
 ## 2) Now we can start Installation
 
-### 2.1 Install the base and development packages
+### 2.1 To install the base and development packages:
  	pacstrap /mnt linux linux-firmware base base-devel
  
 ### 2.2 Configure the system  
-##### Generate an fstab file (use -U or -L to define by UUID or labels):  
+##### Generate an fstab file (use -U to define mountpoints by UUIDs or -L for LABELs): 
 	genfstab -pL /mnt  /mnt/etc/fstab
 
 ### 2.3 Change root into the new system:
@@ -88,7 +89,7 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 	LC_TIME=en_GB.UTF-8
 	
 ### 2.7 Add console keymap and font preferences in /etc/vconsole.conf:
-	cd 
+	echo /etc/vconsole.conf >> KEYMAP=fr_CH
 	
 ### 2.8 Configure kernel options with /etc/mkinitcpio.conf:  
 ##### Add virtual machine support:  
@@ -114,11 +115,8 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
  	nano /etc/sudoers and uncomment the %wheel line
  	passwd "username" to define a password and su "username" to login as newly created user
 
-## 5) Install basic build utilities
-	sudo pacman -S multilib-devel fakeroot git jshon wget make pkg-config autoconf automake patch
-
-## 6) Install a network manager, we will pick netctl, with some useful options:
-	pacman -S netctl ifplugd dhcpcd openssh
+## 5) Install further build utilities, a network manager (I pick netctl) and useful options:
+	sudo pacman -S multilib-devel git jshon wget netctl ifplugd dhcpcd openssh
 
 ## 7) Configure Network
 	cd /etc/netctl
@@ -128,9 +126,9 @@ All you get when installing Arh Linux onto a VPS is a basic promp:
 	netctl enable internet && sudo netctl start internet
 	
 ## 8) Should you want to install a desktop environment and some fancy packages:
-	pacman -S xfce4 xfce4-goodies slim xorg wget baobab mlocate binutils synapse firefox p7zip xarchiver
+	pacman -S xfce4 xfce4-goodies slim xorg wget baobab mlocate binutils firefox p7zip xarchiver
 	
-## 9) Configure Xfce  
+## 9) Configure Xfce
 ##### Create .xinitrc:
 	nano ~/.xinitrc and "starxfce4" then save
 	Edit slim.conf default username and autologin yes for autologin.
